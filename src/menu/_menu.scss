@@ -1,0 +1,72 @@
+$simulation-width: 60rem;
+$simulation-height: 30rem;
+
+.menu {
+  background: #455a64;
+  height: $simulation-height;
+  width: $simulation-width;
+  animation: 1s normal start-menu;
+  display: grid;
+  place-content: center;
+  h2 {
+    color: #fff;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+    height: calc($simulation-height/2);
+    width: calc($simulation-height/2);
+    gap: 2rem;
+    &--section {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      color: #fff;
+    }
+    &--cycles-input {
+      width: 70%;
+      padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+      border-radius: 10px;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  &__loading {
+    background: #455a64;
+    height: $simulation-height;
+    width: $simulation-width;
+    section {
+      color: #fff;
+      background: #212121;
+      width: $simulation-width;
+      height: $simulation-height;
+      font-weight: 800;
+      font-size: 1.5rem;
+      animation: 1s normal loading;
+      display: grid;
+      place-content: center;
+      text-align: center;
+    }
+  }
+}
+
+@keyframes start-menu {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loading {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+  }
+
+  100% {
+    clip-path: circle(90% at 50% 50%);
+  }
+}

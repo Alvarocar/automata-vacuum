@@ -1,20 +1,18 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
-import Automata from "../automata"
 import AutomataComponent from "../automata/automata.component"
 import { EAutomataActions, EAutomataState } from "../automata/state.enum"
-import { randomEnumValue, randomItemArray } from "../util/random"
+import { randomEnumValue } from "../util/random"
 import Section from "./children/section"
 import { ESimulationState } from "./state.enum"
 
 interface Props {
-  cycles: number
-  vacuumCleaner?: React.ReactElement
+  onFinish: () => void,
 }
 
 const Simulator: React.FC<Props> = ({
-  cycles,
+  onFinish,
 }) => {
-  const [state, setState] = useState(ESimulationState.FULL)
+  const [state, setState] = useState<ESimulationState>(randomEnumValue(ESimulationState))
 
   const [initialAutState] = useState(randomEnumValue(EAutomataState))
 
@@ -32,7 +30,6 @@ const Simulator: React.FC<Props> = ({
   }, [state])
 
   const handleClean = useCallback((autState: EAutomataState, action: EAutomataActions) => {
-    console.log(autState, action)
     setTimeout(() => {
       if (action !== EAutomataActions.CLEAN) {
         return
@@ -56,10 +53,10 @@ const Simulator: React.FC<Props> = ({
     }, 2000)
   }, [setState])
   const handleStop = useCallback(() => {
-    console.log("dentenerse")
-  }, [])
+    onFinish()
+  }, [onFinish])
   return (
-    <div className="simulation">
+    <div className="simulation" >
       <Section className="simulation__section--1" trash={trash1} />
       <Section className="simulation__section--2" trash={trash2} />
       <AutomataComponent

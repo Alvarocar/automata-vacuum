@@ -27,7 +27,7 @@ const AutomataComponent: React.FC<Props> = ({
   const [on, setOn] = useState(true)
   const [autState, setAutState] = useState(initialState)
   const position = useMemo(() => autState === EAutomataState.LEFT ? "simulation__vacuum--left" : "simulation__vacuum--right", [autState])
-  const onClass = useMemo(() => on ? "simulation__vacuum--on" : "", [on])
+  const onClass = useMemo(() => on ? "simulation__vacuum--on" : "simulation__vacuum--off", [on])
   const automata = useMemo(() => new Automata(initialState), [initialState])
   useEffect(() => {
     const timeout = setTimeout(() => {

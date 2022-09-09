@@ -44,6 +44,7 @@ $simulation-width: 60rem;
 $simulation-height: 30rem;
 $floor-background: url("https://media.istockphoto.com/vectors/wooden-texture-vector-vector-id483883932?k=20&m=483883932&s=612x612&w=0&h=Tda-LM23hIe2atUCEWhRdn82dQP5AjQI42OiYvYfgfY=");
 $vacuum-radio: 10rem;
+$vacuum-center: calc($simulation-width/2 - 80px);
 
 .simulation {
   background: grey;
@@ -53,10 +54,11 @@ $vacuum-radio: 10rem;
   position: relative;
   &__section {
     position: relative;
-    &--1, &--2 {
+    &--1,
+    &--2 {
       height: $simulation-height;
       width: calc($simulation-width/2);
-      outline: solid #4E342E;
+      outline: solid #4e342e;
       background: $floor-background;
     }
 
@@ -70,16 +72,12 @@ $vacuum-radio: 10rem;
       bottom: 0;
       right: 0;
       margin: auto;
-      box-shadow: 40px 0 #757575,
-      -40px 0 #757575,
-      40px -90px #757575,
-      -40px 80px #757575,
-      90px 100px #757575,
-      -90px -100px #757575;
+      box-shadow: 40px 0 #757575, -40px 0 #757575, 40px -90px #757575,
+        -40px 80px #757575, 90px 100px #757575, -90px -100px #757575;
     }
   }
   &__vacuum {
-    height:$vacuum-radio;
+    height: $vacuum-radio;
     width: $vacuum-radio;
     background: black;
     position: absolute;
@@ -88,24 +86,43 @@ $vacuum-radio: 10rem;
     margin: auto 0;
     border-radius: 50%;
     box-shadow: 0 0 0 10px;
+    left: $vacuum-center;
     transition: 2s ease-in-out all;
     &--left {
       left: calc($vacuum-radio);
     }
     &--right {
-      left: calc($vacuum-radio*4);
+      left: calc($vacuum-radio * 4);
     }
     &--on {
       animation: 1s infinite alternate vacuumon;
+    }
+    &--off {
+      animation: 1s forwards vacuumoff;
     }
   }
 }
 
 @keyframes vacuumon {
-  0% {
-    
-  }
   100% {
-    box-shadow: 0 0 0 10px #F44336;
+    box-shadow: 0 0 0 10px #f44336;
+  }
+}
+
+@keyframes vacuumoff {
+  100% {
+    left: $vacuum-center;
+  }
+}
+
+@keyframes vacuumleft {
+  100% {
+    left: calc($vacuum-radio) !important;
+  }
+}
+
+@keyframes vacuumright {
+  100% {
+    left: calc($vacuum-radio * 4) !important;
   }
 }
