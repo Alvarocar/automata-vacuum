@@ -72,8 +72,27 @@ $vacuum-center: calc($simulation-width/2 - 80px);
       bottom: 0;
       right: 0;
       margin: auto;
-      box-shadow: 40px 0 #757575, -40px 0 #757575, 40px -90px #757575,
-        -40px 80px #757575, 90px 100px #757575, -90px -100px #757575;
+      transform: rotate(10deg);
+      box-shadow: 40px 60px 0 5px #eeeeee, -100px 0 0 2px #757575,
+        40px -90px #757575, -40px 80px 0 -2px #616161, 90px 100px #424242,
+        -90px -100px #757575, 90px -2px #eeeeee;
+      &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: #757575;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        transform: rotate(-70deg) translatex(-20px) translateY(-40px);
+        margin: auto;
+        box-shadow: 40px 60px 0 5px #eeeeee, -100px 0 0 2px #757575,
+          40px -90px #757575, -40px 80px 0 -2px #616161, 90px 100px #424242,
+          -90px -100px #757575, 90px -2px #eeeeee;
+      }
     }
   }
   &__vacuum {
